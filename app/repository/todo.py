@@ -98,7 +98,7 @@ def delete_one_todo(id,db,current_user):
     db.commit()
     return {'details':'deleted'}
 
-def get_similar_task(description:str,db,current_user):
+def get_similar_task(description,db,current_user):
     todo=db.query(models.Todo).filter(models.Todo.description==description).all()
     if not todo:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
