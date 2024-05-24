@@ -26,5 +26,16 @@ class Todo(Base):
     owner_id = Column(Integer,ForeignKey('users.id'))
     owner = relationship('User',back_populates='todos') 
 
+     # New relationship
+    files = relationship("File", back_populates="todo")
 
 
+class File(Base):
+    __tablename__ = 'files'
+    id = Column(Integer, primary_key=True, index=True)
+    filename = Column(String, index=True)
+    file_path = Column(String, index=True)
+    todo_id = Column(Integer, ForeignKey('todo.id'))
+
+    # Relationship back to Todo
+    todo = relationship("Todo", back_populates="files")

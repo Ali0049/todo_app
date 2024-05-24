@@ -38,6 +38,15 @@ def create_a_todo(description,day,time,complete,files,db,current_user):
                 buffer.write(file.read())
             filenames.append(file.filename)
 
+            # Create a new File instance
+            new_file = models.File(
+                filename=file.filename,
+                file_path=file_path,
+                todo_id=new_todo.id
+            )
+            db.add(new_file)
+
+    db.commit()
     return {"new_todo": new_todo, "filenames": filenames}
     
 
