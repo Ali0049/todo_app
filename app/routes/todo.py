@@ -56,11 +56,11 @@ def get_all_todos(limit:int=5,db:Session=Depends(database.get_db),current_user:s
 def get_a_todo(id:int,db:Session=Depends(database.get_db),current_user:schema.User = Depends(oauth2.get_current_user)):
     return todo.get_one_todo(id,db,current_user)
 
-@router.put('/{Date}',status_code=status.HTTP_200_OK)
+@router.get('/{Date}',status_code=status.HTTP_200_OK)
 def get_with_date(Date:date,db:Session=Depends(database.get_db),current_user:schema.User = Depends(oauth2.get_current_user)):
     return todo.get_with_date(Date,db,current_user)
 
-@router.put('/{description}',status_code=status.HTTP_200_OK)
+@router.get('/{description}',status_code=status.HTTP_200_OK)
 def get_similar(desciption:str,db:Session=Depends(database.get_db),current_user:schema.User = Depends(oauth2.get_current_user)):
     return todo.get_similar_task(desciption,db,current_user)
 
