@@ -1,0 +1,30 @@
+<!-- static/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Google OAuth Login</title>
+</head>
+<body>
+    <h1>Google OAuth Login</h1>
+    <button id="loginButton">Login with Google</button>
+    
+    <script>
+        document.getElementById('loginButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/login', {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+
+                if (response.redirected) {
+                    window.location.href = response.url;
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+            }
+        });
+    </script>
+</body>
+</html>
